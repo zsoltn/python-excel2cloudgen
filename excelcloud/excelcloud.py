@@ -10,34 +10,34 @@ from utils.utils_excelcloud import handle_excel
 
 def main(argv = None): # IGNORE:C0111
     rootpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "excels")
-    parser = ArgumentParser(prog = "excelcloud" , formatter_class = RawTextHelpFormatter)
+    parser = ArgumentParser(prog = "excelcloud", formatter_class = RawTextHelpFormatter)
     
     parser.add_argument("--execute",
                         dest = "FILE",
-                        help = "Excel file what will processed")
+                        help = "Excel file to process.")
     parser.add_argument("--gencode",
                         dest = "CODEPATH",
-                        help = "Path of generated code")
+                        help = "Output directory for generated code.")
     parser.add_argument("--initplugins",
                         dest = "INITPLUGIN",
-                        help = "initializing the plugins (if need)",
+                        help = "Initialize plugins (if needed).",
                         action = "store_true")
     parser.add_argument("--startserver",
                         dest = "START_SERVER",
-                        help = "Start ExcelCloud Server application",
+                        help = "Start ExcelCloud server application.",
                         action = "store_true")
     parser.add_argument("--stopserver",
                         dest = "STOP_SERVER",
-                        help = "Stop ExcelCloud Server application",
+                        help = "Stop ExcelCloud server application.",
                         action = "store_true")
     parser.add_argument("--path",
                         dest = "PATH",
-                        help = "Root Path of ExcelCloud Server")
+                        help = "Root path of ExcelCloud server.")
     
-    # have to implement the authentication method for WEBDAV
+    # still have to implement the authentication method for Webdav:
     # parser.add_argument("--password",
     #                     dest = "PASSWORD",
-    #                     help = "Password of WEBDAV ExcelCloud Server")
+    #                     help = "Password of Webdav ExcelCloud server.")
     
     args = parser.parse_args()
     
@@ -45,16 +45,16 @@ def main(argv = None): # IGNORE:C0111
         rootpath = args.PATH
 
     if args.CODEPATH and args.FILE:
-        # not execute the code just generate
+        # just generate code, but do not execute it
         handle_excel(args.FILE,outputdir = args.CODEPATH)
     elif args.FILE:
         handle_excel(args.FILE)
     elif args.START_SERVER:
-        print "Start File System Changes Wathcer"
+        print("Starting file system change watcher.")
         t = Thread(target = startWatcher, args = (rootpath,))
         t.start()
         
-        print "Start WEBDAV server"
+        print("Starting Webdav server.")
         t2 = Thread(target = startwebdav, args = (rootpath,))
         t2.start()
     elif args.INITPLUGIN:
