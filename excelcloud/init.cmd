@@ -1,0 +1,1 @@
+python excelcloud.py --initplugins
