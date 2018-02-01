@@ -2,7 +2,7 @@ Excel2cloudgen
 ==========
 
 [![Downloads](https://pypip.in/download/excel2cloudgen/badge.svg)](https://pypi.python.org/pypi/excel2cloudgen/)
-[![License](https://pypip.in/license/excel2cloudgen/badge.svg)](https://pypi.python.org/pypi/excel2cloudgen\./)
+[![License](https://pypip.in/license/excel2cloudgen/badge.svg)](https://pypi.python.org/pypi/excel2cloudgen/)
 
 
 Open Telekom Cloud API tool
