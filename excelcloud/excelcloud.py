@@ -10,13 +10,13 @@ from utils.utils_excelcloud import handle_excel
 
 def main(argv=None): # IGNORE:C0111    
     rootpath = os.path.join( os.path.dirname(os.path.realpath(__file__)), "excels")
-    parser = ArgumentParser(prog='excelcloud' ,  formatter_class=RawTextHelpFormatter )
+    parser = ArgumentParser(prog="excelcloud" ,  formatter_class=RawTextHelpFormatter )
     
     parser.add_argument( "--execute", dest="FILE", help="Excel file what will processed")
     parser.add_argument( "--gencode", dest="CODEPATH", help="Path of generated code")
-    parser.add_argument( "--initplugins", dest="INITPLUGIN", help="initializing the plugins (if need)", action='store_true')
-    parser.add_argument( "--startserver", dest="START_SERVER", help="Start ExcelCloud Server application",action='store_true')
-    parser.add_argument( "--stopserver", dest="STOP_SERVER", help="Stop ExcelCloud Server application",action='store_true')
+    parser.add_argument( "--initplugins", dest="INITPLUGIN", help="initializing the plugins (if need)", action="store_true")
+    parser.add_argument( "--startserver", dest="START_SERVER", help="Start ExcelCloud Server application",action="store_true")
+    parser.add_argument( "--stopserver", dest="STOP_SERVER", help="Stop ExcelCloud Server application",action="store_true")
     parser.add_argument( "--path", dest="PATH", help="Root Path of ExcelCloud Server")
     
     # have to implement the authentication method for WEBDAV
@@ -48,7 +48,7 @@ def main(argv=None): # IGNORE:C0111
         if os.path.exists(lockfilename):
             os.unlink(lockfilename)
         else:
-            fp = open(lockfilename, 'w')
+            fp = open(lockfilename, "w")
             fp.flush()                 
     else:    
         parser.print_help()
