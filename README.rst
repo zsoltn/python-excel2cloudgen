@@ -22,12 +22,12 @@ Documentation
 Command line usage
 -----
 
-`````sh  
+``  
 $ sudo pip install python-excel2cloudgen  ``` 
 
 or
 
-`````sh  
+``  
 $ git clone https://github.com/OpenTelekomCloud/python-excel2cloudgen.git  ``` 
 
 Usage
@@ -35,22 +35,22 @@ Usage
 
  Generate Code 
 
-`````sh 
+`` 
 excelcloud --gencode generatedcode --execute excels\e.xlsx     ``` 
 
  Start Server 
 
-`````sh 
+`` 
 excelcloud --startserver  ``` 
 
  Stop Server
 
-`````sh 
+`` 
 excelcloud --stopserver ``` 
 
  Generate Code and Run automation code after generation
 
-`````sh 
+`` 
 excelcloud  --execute excels\e.xlsx ```  
 
 
