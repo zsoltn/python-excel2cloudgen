@@ -22,30 +22,30 @@ Documentation
 Command line usage
 -----
 
-`` $ sudo pip install python-excel2cloudgen  ``
+`````sh $ sudo pip install python-excel2cloudgen  `````
 
 or
 
-`` $ git clone https://github.com/OpenTelekomCloud/python-excel2cloudgen.git  ``
+`````sh $ git clone https://github.com/OpenTelekomCloud/python-excel2cloudgen.git  `````
 
 Usage
 ----------------
 
  Generate Code 
 
-`` $ excelcloud --gencode generatedcode --execute excels\e.xlsx     ``
+`````sh $ excelcloud --gencode generatedcode --execute excels\e.xlsx     `````
 
  Start Server 
 
-`` $ excelcloud --startserver  ``
+`````sh $ excelcloud --startserver  `````
 
  Stop Server
 
-`` $ excelcloud --stopserver ``
+`````sh $ excelcloud --stopserver `````
 
  Generate Code and Run automation code after generation
 
-`` $ excelcloud  --execute excels\e.xlsx `` 
+`````sh $ excelcloud  --execute excels\e.xlsx ```````` 
 
 
 License
