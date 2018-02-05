@@ -20,33 +20,34 @@ Documentation
 [OTCclient Reference](https://docs.otc.t-systems.com/?locale=en-us)
 
 Command line usage
------
+------------------
 
-`````sh $ sudo pip install python-excel2cloudgen  `````
+
+``$ sudo pip install python-excel2cloudgen``
+
 
 or
 
-`````sh $ git clone https://github.com/OpenTelekomCloud/python-excel2cloudgen.git  `````
+``$ git clone https://github.com/OpenTelekomCloud/python-excel2cloudgen.git``
 
 Usage
 ----------------
 
  Generate Code 
 
-`````sh $ excelcloud --gencode generatedcode --execute excels\e.xlsx     `````
+``$ excelcloud --gencode generatedcode --execute excels\e.xlsx``
 
  Start Server 
 
-`````sh $ excelcloud --startserver  `````
+``$ excelcloud --startserver``
 
  Stop Server
 
-`````sh $ excelcloud --stopserver `````
+``$ excelcloud --stopserver``
 
  Generate Code and Run automation code after generation
 
-`````sh $ excelcloud  --execute excels\e.xlsx ```````` 
-
+``$ excelcloud  --execute excels\e.xlsx``
 
 License
 -------
