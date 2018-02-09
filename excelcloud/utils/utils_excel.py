@@ -4,6 +4,7 @@ import xlwt
 import xlrd
 from utils_directory import read_templatefilenames  
 import os
+from django.template.defaultfilters import pprint
 
 def create_workbook(inventory_dict, output_file='inventory.xls'):            
     wb = xlwt.Workbook()
@@ -59,26 +60,45 @@ def read_config_sheet( sheet ):
             else:
                 config[cloud] = { key:val }            
     return config
-
-
+"""
 def read_excelcloud_sheet( sheet ):     
-    config = {}
+    config = {}    
     for i in range(sheet.nrows):
-        if( i < 2 ): 
+        cloud = sheet.cell_value(i, 0)
+        if( i < 2 ) or cloud.startswith( '#' ) or len(cloud.strip()) ==  0:
             continue
-        for j in range(sheet.ncols):
-             
-            cloud = sheet.cell_value(i, 0)
+        for j in range(sheet.ncols):                         
             key = sheet.cell_value(1, j)
             val = sheet.cell_value(i, j)
-            
-            if  not cloud.startswith( '#' ) and len(cloud.strip()) > 0 :                
-                if cloud in config: 
-                    config[cloud][key] =  val
-                else:
-                    config[cloud] = { key:val }
+                                    
+            if cloud in config :                                      
+                config[cloud][key] =  val
+            else:
+                config[cloud] = { key:val }
     return config
-    
+
+"""
+def read_excelcloud_sheets( sheet, multiple=False ):     
+    config = {}    
+    for i in range(sheet.nrows):
+        cloud = sheet.cell_value(i, 0)
+        if( i < 2 ) or cloud.startswith( '#' ) or len(cloud.strip()) ==  0: 
+            continue
+
+        tempvalues = {}      
+        for j in range(sheet.ncols):                               
+            key = sheet.cell_value(1, j)
+            val = sheet.cell_value(i, j)            
+            tempvalues[key] = val            
+        if not cloud in config:
+            if multiple:
+                config[cloud] = []
+            else:    
+                config[cloud] = tempvalues            
+        if multiple:            
+            config[cloud].append( tempvalues )
+    return config
+
     
 def get_cloud_excel_resources( excelfile ):
     config = {}
@@ -88,16 +108,16 @@ def get_cloud_excel_resources( excelfile ):
     config["cloudconfig"] = read_config_sheet( configsheet )
     
     ecsheet = workbook.sheet_by_name("ExcelCloud")    
-    config["excelclouds"] = read_excelcloud_sheet( ecsheet )
+    config["excelclouds"] = read_excelcloud_sheets( ecsheet, multiple=True )
     
     templatesheet = workbook.sheet_by_name("Templates")    
-    config["templates"] = read_excelcloud_sheet( templatesheet )
+    config["templates"] = read_excelcloud_sheets( templatesheet )
 
     templatesheet = workbook.sheet_by_name("Networks")    
-    config["networks"] = read_excelcloud_sheet( templatesheet )
+    config["networks"] = read_excelcloud_sheets( templatesheet )
 
     templatesheet = workbook.sheet_by_name("SecurityGroups")    
-    config["secgroups"] = read_excelcloud_sheet( templatesheet )
+    config["secgroups"] = read_excelcloud_sheets( templatesheet )
 
     
     # read to dict what key contains the projects (folder name) and subdirectory and files name array the full values     

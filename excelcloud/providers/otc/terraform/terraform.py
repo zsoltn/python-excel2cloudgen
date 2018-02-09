@@ -33,7 +33,7 @@ class terraform(pluginbase):
 
     @staticmethod
     def handleclouddef( self,config, outputdir=None  ):
-        state = config["#PROJECT NAME"]  + ".state"
+        state = config["project"]  + ".state"
         if outputdir is None:
             
             self.codegen(terraformdir, avar=config)                     

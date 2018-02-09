@@ -1,10 +1,26 @@
 #!/bin/bash
-source ./variables.sh
+source ./.ostackrc
 
 TEST_KEYPAIR=`openstack keypair list 2>/dev/null | grep $KEYNAME | awk -F ' | ' '{print $2}'|head -n 1`
 if [ "$TEST_KEYPAIR" = ""  ]; then
     nova keypair-add $KEYNAME>$KEYNAME.pem
 fi
+{% for  dict_item in secgroups%}
+ 
+TEST_SECUGROUP=`openstack security group list 2>/dev/null | grep {{key}} | awk -F ' | ' '{print $2}'|head -n 1`
+
+if [ "$TEST_SECUGROUP" = ""  ]; then
+    openstack security group create {{ dict_item['SECURITYGROUPNAME'] }}
+    {% set PPS = (dict_item['PORTS'] |string ).split(',') %}
+    {{ PPS[1] }}
+    {% for  P in PPS %}
+        openstack security group rule create {{ dict_item['SECURITYGROUPNAME'] }}  --protocol {{ dict_item['SECURITYGROUPNAME'] }} --dst-port {{ P }} --remote-ip {{ dict_item['SOURCEIP'] }}
+     {% endfor %}
+    openstack security group rule create {{ dict_item['SECURITYGROUPNAME'] }}  --protocol {{ dict_item['SECURITYGROUPNAME'] }} --dst-port {{ dict_item['PORTS'] }} --remote-ip {{ dict_item['SOURCEIP'] }}
+fi
+       
+{% endfor %}
+
 
 TEST_SECUGROUP=`openstack security group list 2>/dev/null | grep $SECGROUP | awk -F ' | ' '{print $2}'|head -n 1`
 if [ "$TEST_SECUGROUP" = ""  ]; then

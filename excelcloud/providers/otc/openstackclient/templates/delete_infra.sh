@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./variables.sh
+source ./.ostackrc
 
 TEST_SERVER=`nova list 2>/dev/null | grep $SERVER_NAME | awk -F '|' '{print $3}'`
 
