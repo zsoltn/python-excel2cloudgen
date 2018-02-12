@@ -25,11 +25,6 @@ def create_plugin_request(pluginname,outputdir, templateConfig ):
         if os.path.isdir(template_file_name):
             continue     
         
-        
-#        print outputdir 
-#        print templateConfig["project"]
-                
-        
         outdirwithproject = os.path.join(outputdir,templateConfig["project"])        
         if not os.path.exists(outdirwithproject):
             os.makedirs(outdirwithproject)
