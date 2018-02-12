@@ -17,29 +17,37 @@ The purpose of the Tool is to generate automation code used by DEVOPS or mannage
 Documentation
 -------------
 
-[OTCclient Reference](https://.....)
+[OTCclient Reference](https://docs.otc.t-systems.com/?locale=en-us)
 
 Command line usage
------
+------------------
 
-`````sh
-$ sudo pip install python-excel2cloudgen
-`````
+
+``$ sudo pip install python-excel2cloudgen``
+
+
 or
-`````sh
-$ git clone https://github.com/OpenTelekomCloud/python-excel2cloudgen.git
-`````
+
+``$ git clone https://github.com/OpenTelekomCloud/python-excel2cloudgen.git``
 
 Usage
 ----------------
 
-`````sh
-excelcloud --gencode generatedcode --execute excels\e.xlsx    Generate Code
-excelcloud --startserver                                      Start Server 
-excelcloud --stopserver                                       Stop Server 
-excelcloud  --execute excels\e.xlsx                           Generate Code and Run automation code after generation 
+ Generate Code 
 
-`````
+``$ excelcloud --gencode generatedcode --execute excels\e.xlsx``
+
+ Start Server 
+
+``$ excelcloud --startserver``
+
+ Stop Server
+
+``$ excelcloud --stopserver``
+
+ Generate Code and Run automation code after generation
+
+``$ excelcloud  --execute excels\e.xlsx``
 
 License
 -------
